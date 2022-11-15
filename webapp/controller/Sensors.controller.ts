@@ -114,4 +114,9 @@ export default class Sensors extends Controller {
         listBinding.filter(this.customFilters.concat(this.statusFilters));
     }
 
+    navToSensorStatus(event: Event): void {
+        const sensorIndex = (event.getSource() as Control).getBindingContext("sensorModel")?.getProperty("index") as number;
+        (this.getOwnerComponent() as UIComponent).getRouter().navTo("RouteSensorStatus", {index: sensorIndex});
+    }
+
 }
