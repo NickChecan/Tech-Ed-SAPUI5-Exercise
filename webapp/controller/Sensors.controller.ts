@@ -4,6 +4,9 @@ import ResourceBundle from "sap/base/i18n/ResourceBundle";
 import JSONModel from "sap/ui/model/json/JSONModel";
 import ResourceModel from "sap/ui/model/resource/ResourceModel";
 import { IconColor } from "sap/ui/core/library";
+import Filter from "sap/ui/model/Filter";
+import Event from "sap/ui/base/Event";
+import ListBinding from "sap/ui/model/ListBinding";
 
 enum Threshold {
     Warm = 4,
@@ -41,4 +44,27 @@ export default class Sensors extends Controller {
             return IconColor.Negative;
         }
     }
+
+    private customFilters: Filter[] = [];
+    private statusFilters: Filter[] = [];
+
+    onSensorSelect(event: Event): void {
+
+        const listBinding = this.getView()?.byId("sensorsList")?.getBinding("items") as ListBinding;
+        const key = (event.getParameter("key") as string);
+
+        if (key === "Cold") {
+            this.statusFilters = [new Filter("temperature", "LT", Threshold.Warm, false)];
+        } else if (key === "Warm") {
+            this.statusFilters = [new Filter("temperature", "BT", Threshold.Warm, Threshold.Hot)];
+        } else if (key === "Hot") {
+            this.statusFilters = [new Filter("temperature", "GT", Threshold.Hot, false)];
+        } else {
+            this.statusFilters = [];
+        }
+
+        listBinding.filter(this.statusFilters);
+        
+    }
+    
 }
