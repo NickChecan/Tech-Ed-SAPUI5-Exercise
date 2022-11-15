@@ -46,16 +46,13 @@
     "sap.ui5": {
         "flexEnabled": true,
         "dependencies": {
-            "minUI5Version": "1.108.0",
+            "minUI5Version": "1.106.0",
             "libs": {
-                "sap.m": {},
                 "sap.ui.core": {},
+                "sap.ui.layout": {},
+                "sap.m": {},
                 "sap.f": {},
-                "sap.suite.ui.generic.template": {},
-                "sap.ui.comp": {},
-                "sap.ui.generic.app": {},
-                "sap.ui.table": {},
-                "sap.ushell": {}
+                "sap.suite.ui.microchart": {}
             }
         },
         "contentDensities": {
@@ -87,27 +84,23 @@
                 "routerClass": "sap.m.routing.Router",
                 "viewType": "XML",
                 "async": true,
+                "transition": "slide",
                 "viewPath": "keepcool.sensormanager.view",
                 "controlAggregation": "pages",
-                "controlId": "app",
-                "clearControlAggregation": false
+                "controlId": "app"
             },
-            "routes": [
-                {
-                    "name": "RouteApp",
-                    "pattern": ":?query:",
-                    "target": [
-                        "TargetApp"
-                    ]
-                }
-            ],
+            "routes": [{
+                "name": "RouteSensors",
+                "pattern": "",
+                "target": ["TargetSensors"]
+            }],
             "targets": {
-                "TargetApp": {
+                "TargetSensors": {
                     "viewType": "XML",
                     "transition": "slide",
                     "clearControlAggregation": false,
-                    "viewId": "App",
-                    "viewName": "App"
+                    "viewId": "Sensors",
+                    "viewName": "Sensors"
                 }
             }
         },
