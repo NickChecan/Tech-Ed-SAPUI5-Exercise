@@ -6,7 +6,7 @@
                     <f:GridList
                         id="sensorsList"
                         items="{path: 'sensorModel>/sensors', sorter: {path:'customer', group:true, descending: false}}"
-                        noDataText="No sensors">
+                        noDataText="{i18n>noSensorDataText}">
                         <f:customLayout>
                             <grid:GridBoxLayout />
                         </f:customLayout>
