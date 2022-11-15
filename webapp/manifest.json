@@ -16,14 +16,9 @@
             "toolsId": "b254c9fd-ba68-4b1e-af28-0efeed5f1303"
         },
         "dataSources": {
-            "mainService": {
-                "uri": "/sap/opu/odata/",
-                "type": "OData",
-                "settings": {
-                    "annotations": [],
-                    "localUri": "localService/metadata.xml",
-                    "odataVersion": "2.0"
-                }
+            "sensorSource": {
+                "type": "JSON",
+                "uri": "./localService/sensors.json"
             }
         }
     },
@@ -44,7 +39,7 @@
         }
     },
     "sap.ui5": {
-        "flexEnabled": true,
+        "flexEnabled": false,
         "dependencies": {
             "minUI5Version": "1.106.0",
             "libs": {
@@ -66,10 +61,9 @@
                     "bundleName": "keepcool.sensormanager.i18n.i18n"
                 }
             },
-            "": {
-                "dataSource": "mainService",
-                "preload": true,
-                "settings": {}
+            "sensorModel": {
+                "type": "sap.ui.model.json.JSONModel",
+                "dataSource": "sensorSource"
             }
         },
         "resources": {
